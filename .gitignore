@@ -1,0 +1,43 @@
+# ignoring the phpstorm env
+.idea/*
+
+# ignoring the samples
+index.php.sample
+php.ini.sample
+
+# ignore any changes to gitignore by VIM
+.gitignore.swp
+
+# ignoring the local changes for magento modules
+app/etc/modules/zzz_disabled_modules.xml
+
+# ignoring the zzz_local.xml
+app/etc/zzz_local_dev.xml
+
+# ignoring the media folder
+media/*
+
+# ignoring the var folder
+var/*
+
+# ignoring node folder
+node_modules
+
+# ignoring bower folder
+bower_components
+
+# ignoring vendor folder
+vendor/*
+
+# ignoring the download folder
+downloader/*
+
+# ignoring a few files
+robots.txt
+.modman
+*.sample
+LICENSE.html
+LICENSE.txt
+LICENSE_AFL.txt
+RELEASE_NOTES.txt
+.htaccess_dev
