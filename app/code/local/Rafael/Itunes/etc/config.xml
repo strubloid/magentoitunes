@@ -12,7 +12,7 @@
                 <resourceModel>rafael_itunes_resource</resourceModel>
             </rafael_itunes>
             <rafael_itunes_resource>
-                <class>Rafael_Itunes_Model_Resource</class>
+                <class>RafaelItunes_Model_Resource</class>
                 <entities>
                     <itunes_tracks>
                         <table>itunes_tracks</table>
