@@ -38,4 +38,24 @@
             </rafael_itunes_setup>
         </resources>
     </global>
+    <adminhtml>
+        <layout>
+            <updates>
+                <rafael_itunes>
+                    <file>rafael_adminhtml_itunes.xml</file>
+                </rafael_itunes>
+            </updates>
+        </layout>
+    </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <rafael_itunes after="Mage_Adminhtml">Rafael_Itunes</rafael_itunes>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
 </config>
