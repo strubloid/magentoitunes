@@ -1,10 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
+ * Resource model class of Itunes Track.
  * User: strubloid
- * Date: 13/12/18
- * Time: 20:39
- */ 
+ */
 class Rafael_Itunes_Model_Resource_Tracks extends Mage_Core_Model_Resource_Db_Abstract
 {
 

@@ -1,4 +1,48 @@
-.color{
+#magento-itunes
+{
+    background-color: #84a0c4;
+    padding-bottom: 40px;
+}
 
-    background-color:  red;
+#magento-itunes > h2
+{
+    text-align: center;
+    color: white;
+    padding: 20px 0px;
+}
+
+.body-centered{
+    width: 1000px;
+    margin: 0px auto;
+}
+
+.field-centered{
+    margin: 0px auto;
+}
+
+#magento-itunes-tracks .field
+{
+    width: 900px;
+}
+
+#magento-itunes-tracks .field input[type="text"]
+{
+    width: 800px;
+    height: 30px;
+    border: none;
+    line-height: 1px;
+    vertical-align: middle;
+    padding: 0px 10px;
+}
+
+#magento-itunes-tracks .field button[type="submit"]
+{
+    width: 70px;
+    height: 30px;
+    border: none;;
+    background-color: #144f817a;
+    background-image: none;
+    font-size: 18px;
+    line-height: 1px;
+    vertical-align: middle;
 }

@@ -25,6 +25,17 @@
                             </example>
                         </tracks>
                     </itunes>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <rafael>
+                                        <title>Rafael Modules</title>
+                                    </rafael>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
                 </children>
             </admin>
         </resources>

@@ -4,7 +4,7 @@
     <adminhtml_adminhtml_itunes_index>
         <remove></remove>
         <reference name="content">
-            <block type="core/template" name="hello" template="itunes/hello.phtml"/>
+            <block type="rafael_itunes/adminhtml_tracks" name="hello" template="itunes/index.phtml"/>
         </reference>
         <reference name="head">
             <action method="addItem">

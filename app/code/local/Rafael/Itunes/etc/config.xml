@@ -58,4 +58,11 @@
             </adminhtml>
         </routers>
     </admin>
+    <default>
+        <rafael>
+            <configurations>
+                <main_text>Type your favorite artist on it</main_text>
+            </configurations>
+        </rafael>
+    </default>
 </config>
