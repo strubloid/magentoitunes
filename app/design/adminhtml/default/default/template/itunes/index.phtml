@@ -1,10 +1,29 @@
 <div id="magento-itunes" class="body-centered">
-    <h2>Welcome <?php echo $this->getAdminUsername(); ?>, this is Itunes Track module 1.0</h2>
 
-    <form id="magento-itunes-tracks" method="post">
-        <div class="field field-centered">
-            <input type="text" name="tracks" value="<?php echo $this->getMainPhrase(); ?>">
-            <button type="submit">Send</button>
-        </div>
-    </form>
+    <div class="form">
+        <h2>Welcome <?php echo $this->getAdminUsername(); ?>, this is Itunes Track module 1.0</h2>
+        <form id="magento-itunes-tracks" method="post">
+            <div class="field field-centered">
+                <input type="text" name="tracks" value="<?php echo $this->getMainPhrase(); ?>">
+                <button type="submit">Send</button>
+            </div>
+        </form>
+    </div>
+    <div class="table">
+        <table id="magento-itunes-grid" class="table table-condensed table-hover table-striped">
+            <thead>
+            <tr>
+                <th data-column-id="itunes_artistname">Artist</th>
+                <th data-column-id="itunes_albumname">Album</th>
+                <th data-column-id="itunes_trackprice">Track Price</th>
+                <th data-column-id="itunes_image">Image</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
 </div>
+
+

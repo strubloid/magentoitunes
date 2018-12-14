@@ -8,7 +8,7 @@ class Rafael_Itunes_Model_Resource_Tracks extends Mage_Core_Model_Resource_Db_Ab
 
     protected function _construct()
     {
-        $this->_init('rafael_itunes/itunes_tracks', 'itunes_trackid');
+        $this->_init('rafael_itunes/tracks', 'itunes_trackid');
     }
 
 }

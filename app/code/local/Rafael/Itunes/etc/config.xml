@@ -12,11 +12,11 @@
                 <resourceModel>rafael_itunes_resource</resourceModel>
             </rafael_itunes>
             <rafael_itunes_resource>
-                <class>RafaelItunes_Model_Resource</class>
+                <class>Rafael_Itunes_Model_Resource</class>
                 <entities>
-                    <itunes_tracks>
+                    <tracks>
                         <table>itunes_tracks</table>
-                    </itunes_tracks>
+                    </tracks>
                 </entities>
             </rafael_itunes_resource>
         </models>
@@ -52,7 +52,7 @@
             <adminhtml>
                 <args>
                     <modules>
-                        <rafael_itunes after="Mage_Adminhtml">Rafael_Itunes</rafael_itunes>
+                        <rafael_itunes after="Mage_Adminhtml">Rafael_Itunes_Adminhtml</rafael_itunes>
                     </modules>
                 </args>
             </adminhtml>
