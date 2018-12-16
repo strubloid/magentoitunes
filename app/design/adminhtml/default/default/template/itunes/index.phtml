@@ -1,11 +1,24 @@
-<div id="magento-itunes" class="body-centered">
+<?php
 
+// loading the main phrase of it
+$mainPhrase = $this->getMainPhrase();
+
+// loading the admin username
+$adminUsername = $this->getAdminUsername();
+
+?>
+
+
+<div id="magento-itunes" class="body-centered">
     <div class="form">
-        <h2>Welcome <?php echo $this->getAdminUsername(); ?>, this is Itunes Track module 1.0</h2>
+        <h2>Welcome <?php echo $adminUsername; ?>, this is Itunes Track module 1.0</h2>
         <form id="magento-itunes-tracks" method="post">
-            <div class="field field-centered">
-                <input type="text" name="tracks" value="<?php echo $this->getMainPhrase(); ?>">
-                <button type="submit">Send</button>
+            <div class="field field-centered min-height">
+                <input type="hidden" id="mainValue" value="<?php echo $mainPhrase; ?>">
+                <button type="submit" class="icon fa input-group-addon fa-search"">&nbsp</button>
+                <input type="text" id="itunes-search" name="itunes-search" placeholder="<?php echo $mainPhrase; ?>" class="input-text itunes-search">
+                <div class="validation-advice" id="advice-itunes-search-itunes-search" style="display: none;">&nbsp;</div>
+                <div class="magento-errors" style="display: none;">&nbsp;</div>
             </div>
         </form>
     </div>
@@ -25,5 +38,4 @@
         </table>
     </div>
 </div>
-
 

@@ -1,7 +1,7 @@
 #magento-itunes .form
 {
     background-color: #84a0c4;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
 }
 
 #magento-itunes h2
@@ -19,6 +19,9 @@
 .field-centered{
     margin: 0px auto;
 }
+.min-height{
+    min-height: 70px;
+}
 
 #magento-itunes-tracks .field
 {
@@ -27,7 +30,7 @@
 
 #magento-itunes-tracks .field input[type="text"]
 {
-    width: 800px;
+    width: 90%;
     height: 30px;
     border: none;
     line-height: 1px;
@@ -37,12 +40,35 @@
 
 #magento-itunes-tracks .field button[type="submit"]
 {
-    width: 70px;
-    height: 30px;
-    border: none;;
+    width: 40px;
+    height: 32px;
+    border: none;
     background-color: #144f817a;
     background-image: none;
     font-size: 18px;
     line-height: 1px;
     vertical-align: middle;
+    position: relative;
+    right: -4px;
+    color: white;
+
+}
+
+.validation-advice, .magento-errors {
+    color: #991616f7 !important;
+    position: relative;
+    left: 50px;
+    font-size: 16px;
+    display: inline-block;
+    width: 90%;
+    margin: 8px 0px 0px 0px;
+    height: 20px;
+    background: none;
+}
+
+.validation-advice:before, .magento-errors:before {
+    content: "\f062";
+    font-family: FontAwesome;
+    position: relative;
+    left: -8px;
 }
