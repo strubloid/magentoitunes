@@ -12,11 +12,6 @@ class Rafael_Itunes_Model_Api_Itunes extends Rafael_Itunes_Model_Api
         return 'https://itunes.apple.com';
     }
 
-    public function getAPISearch()
-    {
-        return ;
-    }
-
     /**
      * Method that will build the search params.
      *
