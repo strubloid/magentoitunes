@@ -14,10 +14,16 @@ class Rafael_Itunes_Model_Tracks extends Mage_Core_Model_Abstract
     /**
      * Method that will load the first 20 items from tracks collection.
      *
-     * @return mixed
+     * @param $request
+     * @param int $quantity
+     * @param int $page
+     * @return object|Rafael_Itunes_Model_Resource_Tracks_Collection
+     * @throws Mage_Core_Exception
      */
-    public function loadIndexTracks($request)
+    public function loadIndexTracks($request, $quantity = 20, $page =1)
     {
+
+
         // loading the collection
         $collection = $this->getCollection();
 
@@ -27,7 +33,64 @@ class Rafael_Itunes_Model_Tracks extends Mage_Core_Model_Abstract
         }
 
         // loading the collection
-        return $collection->setPageSize(20)->setCurPage(1);
+        $collection->setPageSize($quantity)->setCurPage($page);
+
+
+
+        // Checking if the collection it's empty
+        if($collection->count() <= 0){
+            throw Mage::exception('Rafael_Itunes_Exception_NoResultsMagentoDatabase');
+        }
+        return $collection;
+    }
+
+    /**
+     * Method that will create a data array to insert or
+     * update data.
+     *
+     * @param $data
+     * @return array
+     */
+    private function _buildData($data)
+    {
+        return array(
+            'itunes_trackId' => $data['trackId'],
+            'itunes_artistname' => $data['artistName'],
+            'itunes_albumname' => $data['collectionName'],
+            'itunes_trackname' => $data['trackName'],
+            'itunes_trackprice' => $data['trackPrice'],
+            'itunes_image_30' => $data['artworkUrl30'],
+            'itunes_image_60' => $data['artworkUrl60'],
+            'itunes_image_100' => $data['artworkUrl100'],
+        );
+    }
+
+    /**
+     * Method that will persist a data into a Itunes Tracks table.
+     *
+     * @param $data
+     */
+    public function persistData($data)
+    {
+        try
+        {
+            $data = $this->_buildData($data);
+
+            // searching for the id into magento system
+            $trackObject = $this->load($data['itunes_trackId'], 'itunes_trackId');
+
+            // checking if it will update or create a new record on it
+            if($id = $trackObject->getId()){
+                $this->load($id)->addData($data)->setId($id)->save();
+            } else {
+                $this->setData($data)->save();
+            }
+
+        } catch (Exception $exception) {
+
+            Mage::log($exception->getMessage(), null. 'track-itunes-logs.log', true);
+
+        }
     }
 
 }

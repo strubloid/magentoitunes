@@ -3,6 +3,7 @@
 
     <adminhtml_itunes_index>
         <reference name="content">
+            <block type="core/messages" name="global_messages" as="global_messages"/>
             <block type="rafael_itunes/adminhtml_tracks" name="itunes_index" template="itunes/index.phtml"/>
         </reference>
         <reference name="head">

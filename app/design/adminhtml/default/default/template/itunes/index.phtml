@@ -8,6 +8,7 @@ $adminUsername = $this->getAdminUsername();
 
 ?>
 
+<?php echo $this->getChildHtml('global_messages'); ?>
 
 <div id="magento-itunes" class="body-centered">
     <div class="form">
@@ -17,8 +18,6 @@ $adminUsername = $this->getAdminUsername();
                 <input type="hidden" id="mainValue" value="<?php echo $mainPhrase; ?>">
                 <button type="submit" class="icon fa input-group-addon fa-search"">&nbsp</button>
                 <input type="text" id="itunes-search" name="itunes-search" placeholder="<?php echo $mainPhrase; ?>" class="input-text itunes-search">
-                <div class="validation-advice" id="advice-itunes-search-itunes-search" style="display: none;">&nbsp;</div>
-                <div class="magento-errors" style="display: none;">&nbsp;</div>
             </div>
         </form>
     </div>

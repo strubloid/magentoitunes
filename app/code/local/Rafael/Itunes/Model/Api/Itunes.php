@@ -30,14 +30,15 @@ class Rafael_Itunes_Model_Api_Itunes extends Rafael_Itunes_Model_Api
             throw Mage::exception('Rafael_Itunes_Exception_MissingSearchParam');
         }
 
-        return http_build_query(['term' => $request->getParam('itunes-search')]);
+        return http_build_query(['term' => $request->getParam('itunes-search'), 'limit' => 2]);
     }
 
     /**
      * Method that will search into the Itunes API.
      *
      * @param $params
-     * @return mixed
+     * @return bool|mixed|string
+     * @throws Mage_Core_Exception
      */
     public function search($params)
     {
@@ -60,6 +61,11 @@ class Rafael_Itunes_Model_Api_Itunes extends Rafael_Itunes_Model_Api
         }
 
         curl_close($handle);
+
+        if($output['resultCount'] <= 0)
+        {
+            throw Mage::exception('Rafael_Itunes_Exception_NoResultsFromApi');
+        }
 
         return $output;
     }

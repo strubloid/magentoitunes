@@ -46,6 +46,16 @@
                 this.submitAction();
             });
         },
+        showMagentoMessage : function(msg, time)
+        {
+            // showing the message
+            $j('#messages').html(msg).show();
+
+            // getting a timer to hide the message after showing
+            setTimeout(function(){
+                $j('.magento-errors').hide();
+            }, time);
+        },
         submitAction: function()
         {
             // this will check if the validator works
@@ -62,19 +72,18 @@
                     url: '/admin/itunes/searchArtist',
                     data:  postData,
                     dataType :'json',
-                    success: (data) => {
+                    success: (data, textStatus, jqXHR) => {
 
-
+                        debugger;
                         if(data.success){
-                            $(this.getTableId()).bootgrid('reload');
-                        } else {
-                            $j('.magento-errors').html(data.msg).show();
-
-                            setTimeout(function(){
-                                $j('.magento-errors').hide();
-                            }, 4000);
-
+                            $j(this.getTableId()).bootgrid('reload');
                         }
+                        this.showMagentoMessage(data.msg, 4000);
+                    },
+                    error: (jqXHR, textStatus, errorThrown) => {
+
+                        data = jqXHR.responseJSON;
+                        this.showMagentoMessage(data.msg, 4000);
                     }
                 });
             } else {
@@ -88,12 +97,18 @@
                 highlightRows: true,
                 // navigation: 1,
                 navigation: 3,
+                characters: 3,
                 ajax: true,
                 post:  this.getMainData(),
                 multiSelect: false,
                 ajaxSettings: {
                     method: "POST",
-                    cache: false
+                    cache: false,
+                    dataType :'json',
+                    complete: (jqXHR, textStatus) => {
+                        data = jqXHR.responseJSON;
+                        this.showMagentoMessage(data.msg, 4000);
+                    }
                 },
                 url: '/admin/itunes/loadTracks',
 
@@ -143,8 +158,6 @@
                     `;
 
                     $j(this.getTableTbodySelector()).append(tr);
-
-
                 }
             }
 

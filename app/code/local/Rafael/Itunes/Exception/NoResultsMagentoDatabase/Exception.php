@@ -1,6 +1,6 @@
 <?php
 
-class Rafael_Itunes_Exception_MissingSearchParam_Exception extends Mage_Core_Exception
+class Rafael_Itunes_Exception_NoResultsMagentoDatabase_Exception extends Mage_Core_Exception
 {
     /**
      * Rewriting constructor to be able to set a message for this exception.
@@ -13,7 +13,7 @@ class Rafael_Itunes_Exception_MissingSearchParam_Exception extends Mage_Core_Exc
     public function __construct($message = "", $code = 0, Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
-        $this->setMessage('You must type something, dont forget about it!');
+        $this->setMessage("Try to type another artist, this is missing from our database.");
     }
 
 
