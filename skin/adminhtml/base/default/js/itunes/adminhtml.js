@@ -74,7 +74,6 @@
                     dataType :'json',
                     success: (data, textStatus, jqXHR) => {
 
-                        debugger;
                         if(data.success){
                             $j(this.getTableId()).bootgrid('reload');
                         }
