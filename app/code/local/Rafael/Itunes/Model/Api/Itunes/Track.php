@@ -1,13 +1,12 @@
 <?php
 /**
- * Api class for Itunes service related to Album queries.
+ * Api class for Itunes service related to Tracks of the Album.
  *
- * Class Rafael_Itunes_Model_Api_Itunes_Album
+ * Class Rafael_Itunes_Model_Api_Itunes_Track
  */
-class Rafael_Itunes_Model_Api_Itunes_Album extends Rafael_Itunes_Model_Api_Itunes
+class Rafael_Itunes_Model_Api_Itunes_Track extends Rafael_Itunes_Model_Api_Itunes
 {
-
-    public $searchType = 'search';
+    public $searchType = 'lookup';
 
     /**
      * Method that will format a request for the Itunes API.
@@ -19,10 +18,11 @@ class Rafael_Itunes_Model_Api_Itunes_Album extends Rafael_Itunes_Model_Api_Itune
     public function itunesParams($request, $extraParams = null)
     {
         return array(
-            'term' => $request->getParam('itunes-search'),
-            'entity' => 'album',
+            'id' => $extraParams,
+            'entity' => 'song',
         );
     }
+
 
     /**
      * Making sure that the artist will be the same as requested from the search box.
@@ -39,7 +39,7 @@ class Rafael_Itunes_Model_Api_Itunes_Album extends Rafael_Itunes_Model_Api_Itune
 
         foreach ($results as $index => $result)
         {
-            if(strtolower($result['artistName']) != strtolower($this->requestSearchParam($request))){
+            if(!array_key_exists('trackId', $result)){
                 unset($output['results'][$index]);
                 $output['resultCount']--;
             }
@@ -47,7 +47,4 @@ class Rafael_Itunes_Model_Api_Itunes_Album extends Rafael_Itunes_Model_Api_Itune
 
         return $output;
     }
-
-
-
 }

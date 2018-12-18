@@ -75,12 +75,31 @@ class Rafael_Itunes_Adminhtml_ItunesController extends Mage_Adminhtml_Controller
     {
         try
         {
-            $artist = Mage::getModel('rafael_itunes/artist');
+            $artistModel = Mage::getModel('rafael_itunes/artist');
             $request = $this->getRequest();
 
-            if($artistId = $artist->find($request))
+            if($artist = $artistModel->find($request))
             {
-                $a =1;
+                // searching for a track into Itunes API
+                $trackCollection = Mage::getModel('rafael_itunes/api_itunes_track')->search($request, $artist->getData('artistId'));
+
+                $processedTracks = 0;
+                foreach($trackCollection['results'] as $track)
+                {
+                    try
+                    {
+                        $action = Mage::getModel('rafael_itunes/track')->persistData($track);
+                        $processedTracks++;
+
+                    } catch (Rafael_Itunes_Exception_CantCreateTrack_Exception $exception) {
+
+                        Mage::log($exception->getMessage(), null . 'itunes_album.log', true);
+
+                    }
+                }
+
+                $this->_ajax->success("Created/Updated {$processedTracks} Track(s)");
+
             } else { // search by itunes-search on Itunes API
 
                 $albumCollection = Mage::getModel('rafael_itunes/api_itunes_album')->search($request);
@@ -127,30 +146,13 @@ class Rafael_Itunes_Adminhtml_ItunesController extends Mage_Adminhtml_Controller
 
         }
 
-
-
-
-
-
-        // fist i must check if exist the artist inside of my artist table
-
-            // exists
-                // 1 - load all magento album object
-                    // each object must search for tracks of that album
-                // 2 - you must persist the track data on track table
-
-            // not existent
-
-                // 1 - search on itunes API to grab albuns of that artist
-                // 2 - you must filter to be exactly the artist that you asked
-                // 3 - you must save the album data inside of album table
-        
-
     }
 
     /**
      * Action that will search in the Itunes API and update of the data
      * on itunes_tracks table.
+     * @deprecated
+     *
      *
      */
     public function searchArtistAction()

@@ -16,9 +16,10 @@ class Rafael_Itunes_Model_Api_Itunes extends Rafael_Itunes_Model_Api
      * Method that will format a request for the Itunes API.
      *
      * @param $request
-     * @return string
+     * @param null $extraParams
+     * @return array
      */
-    public function itunesParams($request)
+    public function itunesParams($request, $extraParams = null)
     {
         return array(
             'term' => $this->requestSearchParam(),
@@ -32,12 +33,12 @@ class Rafael_Itunes_Model_Api_Itunes extends Rafael_Itunes_Model_Api
      * @return bool|mixed|string
      * @throws Mage_Core_Exception
      */
-    public function search($request)
+    public function search($request, $extraParams = null)
     {
         $handle = curl_init();
 
         // building the url
-        $url = "{$this->getAPiUrl()}/search?{$this->buildSearchParams($request)}";
+        $url = "{$this->getAPiUrl()}/{$this->buildSearchParams($request, $extraParams)}";
 
         // set of the url
         curl_setopt($handle, CURLOPT_URL, $url);
