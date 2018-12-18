@@ -23,6 +23,14 @@ try
         'Album ID from Itunes'
 
     )->addColumn(
+        'artistId', Varien_Db_Ddl_Table::TYPE_INTEGER, null,
+        array(
+            'nullable' => false,
+            'primary'  => true,
+        ),
+        'FK to artistId on Itunes_Artist'
+
+    )->addColumn(
         'collectionName', Varien_Db_Ddl_Table::TYPE_VARCHAR, null,
         array(
             'nullable'  => false,

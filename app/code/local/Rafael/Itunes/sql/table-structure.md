@@ -21,7 +21,7 @@ Itunes_Album
             
 https://itunes.apple.com/lookup?id=1051543048&entity=song
 
-Itunes_Album_Track
+Itunes_Track
 "trackId": 1051543051,
 "artistId": 1051543048,
 "collectionId": 1051542888,

@@ -15,67 +15,77 @@ try
 
     // creating the table structure
     $itunesTracks->addColumn(
-        'id', Varien_Db_Ddl_Table::TYPE_INTEGER, null,
+        'trackId', Varien_Db_Ddl_Table::TYPE_INTEGER, null,
         array(
-            'identity' => true,
-            'unsigned' => true,
             'nullable' => false,
             'primary'  => true,
         ),
-        'Itunes ID into magento structure'
+        'Itunes ID from Itunes'
 
     )->addColumn(
-        'itunes_trackId', Varien_Db_Ddl_Table::TYPE_VARCHAR, null,
+        'artistId', Varien_Db_Ddl_Table::TYPE_INTEGER, null,
         array(
-            'nullable'  => false,
+            'nullable' => false,
+            'primary'  => true,
         ),
-        'Itunes track ID from the API'
+        'FK to artistId on Itunes_Artist'
 
     )->addColumn(
-        'itunes_currency', Varien_Db_Ddl_Table::TYPE_VARCHAR, null,
+        'collectionId', Varien_Db_Ddl_Table::TYPE_INTEGER, null,
         array(
-            'nullable'  => false,
+            'nullable' => false,
+            'primary'  => true,
         ),
-        'Currency of the track'
+        'FK to collectionId on Itunes_Album'
 
     )->addColumn(
-        'itunes_artistname', Varien_Db_Ddl_Table::TYPE_TEXT, 300,
+        'collectionName', Varien_Db_Ddl_Table::TYPE_VARCHAR, null,
         array(
             'nullable'  => false,
         ),
-        'Artist Name'
+        'Itunes album name from the API'
 
     )->addColumn(
-        'itunes_albumname', Varien_Db_Ddl_Table::TYPE_TEXT, 300,
+        'trackName', Varien_Db_Ddl_Table::TYPE_VARCHAR, null,
         array(
             'nullable'  => false,
         ),
-        'Album Name'
+        'Itunes track name from the API'
+
     )->addColumn(
-        'itunes_trackname', Varien_Db_Ddl_Table::TYPE_TEXT, 300,
-        array(
-            'nullable'  => false,
-        ),
-        'Track Name'
-    )->addColumn(
-        'itunes_trackprice', Varien_Db_Ddl_Table::TYPE_DECIMAL, '12,4',
+        'trackPrice', Varien_Db_Ddl_Table::TYPE_DECIMAL, '12,4',
         array(
             'nullable'  => false,
             'default'   => '0.0000',
         ),
-        'Price of this track'
+        'Itunes track price from the API'
     )->addColumn(
-        'itunes_image_60', Varien_Db_Ddl_Table::TYPE_TEXT, 2000,
+        'trackNumber', Varien_Db_Ddl_Table::TYPE_INTEGER, null,
+        array(
+            'nullable' => false,
+        ),
+        'Itunes track number sequence from the API'
+    )->addColumn(
+        'currency', Varien_Db_Ddl_Table::TYPE_VARCHAR, null,
         array(
             'nullable'  => false,
         ),
-        'Image size 60x60'
-    )->addColumn(
-        'itunes_image_100', Varien_Db_Ddl_Table::TYPE_TEXT, 2000,
-        array(
-            'nullable'  => false,
-        ),
-        'Image size 100x100'
+        'Itunes track currency from the API'
+
+    )->addIndex($installer->getIdxName('rafael_itunes/track', array('artistId')),
+        array('artistId')
+    )->addIndex($installer->getIdxName('rafael_itunes/track', array('collectionId')),
+        array('collectionId')
+    )->addForeignKey($installer->getFkName('rafael_itunes/track', 'artistId', 'rafael_itunes/artist', 'artistId'),
+        'artistId',
+        $installer->getTable('rafael_itunes/artist'),
+        'artistId',
+        Varien_Db_Ddl_Table::ACTION_CASCADE, Varien_Db_Ddl_Table::ACTION_CASCADE
+    )->addForeignKey($installer->getFkName('rafael_itunes/track', 'collectionId', 'rafael_itunes/album', 'collectionId'),
+        'collectionId',
+        $installer->getTable('rafael_itunes/album'),
+        'collectionId',
+        Varien_Db_Ddl_Table::ACTION_CASCADE, Varien_Db_Ddl_Table::ACTION_CASCADE
     );
 
     if (!$installer->getConnection()->isTableExists($itunesTracks->getName())) {
