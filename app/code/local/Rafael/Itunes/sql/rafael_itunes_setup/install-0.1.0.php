@@ -14,6 +14,14 @@ try
 
     // creating the table structure
     $itunesArtist->addColumn(
+        'id', Varien_Db_Ddl_Table::TYPE_INTEGER, null,
+        array(
+            'identity' => true,
+            'nullable' => false,
+        ),
+        'Magento Artist ID'
+
+    )->addColumn(
         'artistId', Varien_Db_Ddl_Table::TYPE_INTEGER, null,
         array(
             'nullable' => false,
@@ -28,6 +36,8 @@ try
         ),
         'Itunes Artist Name'
 
+    )->addIndex($installer->getIdxName('rafael_itunes/artist', array('id')),
+        array('id')
     );
 
     if (!$installer->getConnection()->isTableExists($itunesArtist->getName())) {

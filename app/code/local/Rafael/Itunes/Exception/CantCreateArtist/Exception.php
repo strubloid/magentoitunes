@@ -1,11 +1,11 @@
 <?php
 /**
- * Exception that will be thrown if the user remove javascript and try to send a request
- * without param itunes-search from the request.
+ * Exception that will be thrown if something happens during the creation of the
+ * artist.
  *
- * Class Rafael_Itunes_Exception_MissingSearchParam_Exception
+ * Class Rafael_Itunes_Exception_CantCreateArtist_Exception
  */
-class Rafael_Itunes_Exception_MissingSearchParam_Exception extends Mage_Core_Exception
+class Rafael_Itunes_Exception_CantCreateArtist_Exception extends Mage_Core_Exception
 {
     /**
      * Rewriting constructor to be able to set a message for this exception.
@@ -18,7 +18,7 @@ class Rafael_Itunes_Exception_MissingSearchParam_Exception extends Mage_Core_Exc
     public function __construct($message = "", $code = 0, Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
-        $this->setMessage('You must type something, dont forget about it!');
+        $this->setMessage("Couldn't create artist {$message}");
     }
 
 

@@ -11,24 +11,24 @@ try
     $tablename = $installer->getTable('rafael_itunes/track');
 
     // loading the new table instance
-    $itunesTracks = $installer->getConnection()->newTable($tablename);
+    $itunesTrack = $installer->getConnection()->newTable($tablename);
 
     // creating the table structure
-    $itunesTracks->addColumn(
+    $itunesTrack->addColumn(
+        'id', Varien_Db_Ddl_Table::TYPE_INTEGER, null,
+        array(
+            'identity' => true,
+            'nullable' => false,
+        ),
+        'Magento Track ID'
+
+    )->addColumn(
         'trackId', Varien_Db_Ddl_Table::TYPE_INTEGER, null,
         array(
             'nullable' => false,
             'primary'  => true,
         ),
-        'Itunes ID from Itunes'
-
-    )->addColumn(
-        'artistId', Varien_Db_Ddl_Table::TYPE_INTEGER, null,
-        array(
-            'nullable' => false,
-            'primary'  => true,
-        ),
-        'FK to artistId on Itunes_Artist'
+        'Track ID from Itunes'
 
     )->addColumn(
         'collectionId', Varien_Db_Ddl_Table::TYPE_INTEGER, null,
@@ -72,15 +72,14 @@ try
         ),
         'Itunes track currency from the API'
 
-    )->addIndex($installer->getIdxName('rafael_itunes/track', array('artistId')),
-        array('artistId')
+    )->addIndex($installer->getIdxName('rafael_itunes/track', array('id', 'trackId', 'collectionId')),
+        array('id', 'trackId', 'collectionId')
+    )->addIndex($installer->getIdxName('rafael_itunes/track', array('id')),
+        array('id')
+    )->addIndex($installer->getIdxName('rafael_itunes/track', array('trackId')),
+        array('trackId')
     )->addIndex($installer->getIdxName('rafael_itunes/track', array('collectionId')),
         array('collectionId')
-    )->addForeignKey($installer->getFkName('rafael_itunes/track', 'artistId', 'rafael_itunes/artist', 'artistId'),
-        'artistId',
-        $installer->getTable('rafael_itunes/artist'),
-        'artistId',
-        Varien_Db_Ddl_Table::ACTION_CASCADE, Varien_Db_Ddl_Table::ACTION_CASCADE
     )->addForeignKey($installer->getFkName('rafael_itunes/track', 'collectionId', 'rafael_itunes/album', 'collectionId'),
         'collectionId',
         $installer->getTable('rafael_itunes/album'),
@@ -88,8 +87,8 @@ try
         Varien_Db_Ddl_Table::ACTION_CASCADE, Varien_Db_Ddl_Table::ACTION_CASCADE
     );
 
-    if (!$installer->getConnection()->isTableExists($itunesTracks->getName())) {
-        $installer->getConnection()->createTable($itunesTracks);
+    if (!$installer->getConnection()->isTableExists($itunesTrack->getName())) {
+        $installer->getConnection()->createTable($itunesTrack);
     }
 
 } catch (Exception $exception) {

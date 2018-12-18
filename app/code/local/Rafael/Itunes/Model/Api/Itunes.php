@@ -20,22 +20,24 @@ class Rafael_Itunes_Model_Api_Itunes extends Rafael_Itunes_Model_Api
      */
     public function itunesParams($request)
     {
-        return http_build_query(['term' => $request->getParam('itunes-search'), 'limit' => 2]);
+        return array(
+            'term' => $this->requestSearchParam(),
+        );
     }
 
     /**
      * Method that will search into the Itunes API.
      *
-     * @param $params
+     * @param $request
      * @return bool|mixed|string
      * @throws Mage_Core_Exception
      */
-    public function search($params)
+    public function search($request)
     {
         $handle = curl_init();
 
         // building the url
-        $url = "{$this->getAPiUrl()}/search?{$params}";
+        $url = "{$this->getAPiUrl()}/search?{$this->buildSearchParams($request)}";
 
         // set of the url
         curl_setopt($handle, CURLOPT_URL, $url);
@@ -55,6 +57,9 @@ class Rafael_Itunes_Model_Api_Itunes extends Rafael_Itunes_Model_Api
         {
             throw Mage::exception('Rafael_Itunes_Exception_NoResultsFromApi');
         }
+
+        // this might have a filter or will be using the function from the abstract class
+        $output = $this->filterResult($output, $request);
 
         return $output;
     }

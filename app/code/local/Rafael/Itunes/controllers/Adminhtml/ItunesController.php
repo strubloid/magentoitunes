@@ -67,8 +67,70 @@ class Rafael_Itunes_Adminhtml_ItunesController extends Mage_Adminhtml_Controller
         }
     }
 
-    public function search()
+    /**
+     * Method that will search for an artist into Itunes API.
+     *
+     */
+    public function searchAction()
     {
+        try
+        {
+            $artist = Mage::getModel('rafael_itunes/artist');
+            $request = $this->getRequest();
+
+            if($artistId = $artist->find($request))
+            {
+                $a =1;
+            } else { // search by itunes-search on Itunes API
+
+                $albumCollection = Mage::getModel('rafael_itunes/api_itunes_album')->search($request);
+
+                // creating a new artist by the album collection data
+                Mage::getModel('rafael_itunes/artist')->createArtist($albumCollection);
+
+                // creating all albums
+                $processedAlbums = 0;
+                foreach($albumCollection['results'] as $album)
+                {
+                    try
+                    {
+
+                        Mage::getModel('rafael_itunes/album')->createAlbum($album);
+                        $processedAlbums++;
+
+                    } catch (Rafael_Itunes_Exception_CantCreateAlbum_Exception $exception) {
+
+                        Mage::log($exception->getMessage(), null. 'itunes_album.log', true);
+
+                    }
+                }
+
+                $this->_ajax->success("Created {$processedAlbums} Album(s)");
+            }
+
+        } catch (Rafael_Itunes_Exception_NoResultsFromApi_Exception $exception) {
+
+            $this->_ajax->failure($exception->getMessage());
+
+        }catch (Rafael_Itunes_Exception_CantCreateArtist_Exception $exception) {
+
+            $this->_ajax->failure($exception->getMessage());
+            Mage::log($exception->getMessage(), null. 'itunes_artist.log', true);
+
+        }  catch (Exception $exception) {
+
+            // log of the unexpected exception in the frontend
+            $this->_ajax->failure('Check the log file itunes-logs.log');
+
+            // saving the log error on itunes-logs.log
+            Mage::log($exception->getMessage(), null. 'itunes-logs.log', true);
+
+        }
+
+
+
+
+
 
         // fist i must check if exist the artist inside of my artist table
 

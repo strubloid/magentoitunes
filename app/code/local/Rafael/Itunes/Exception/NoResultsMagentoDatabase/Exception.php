@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Exception that will be thrown if a request from  magento database and came without any results.
+ *
+ * Class Rafael_Itunes_Exception_NoResultsMagentoDatabase_Exception
+ */
 class Rafael_Itunes_Exception_NoResultsMagentoDatabase_Exception extends Mage_Core_Exception
 {
     /**

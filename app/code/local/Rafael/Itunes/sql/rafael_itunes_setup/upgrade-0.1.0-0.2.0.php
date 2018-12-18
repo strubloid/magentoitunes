@@ -11,10 +11,18 @@ try
     $tablename = $installer->getTable('rafael_itunes/album');
 
     // loading the new table instance
-    $itunesTracks = $installer->getConnection()->newTable($tablename);
+    $itunesAlbum = $installer->getConnection()->newTable($tablename);
 
     // creating the table structure
-    $itunesTracks->addColumn(
+    $itunesAlbum->addColumn(
+        'id', Varien_Db_Ddl_Table::TYPE_INTEGER, null,
+        array(
+            'identity' => true,
+            'nullable' => false,
+        ),
+        'Magento Album ID'
+
+    )->addColumn(
         'collectionId', Varien_Db_Ddl_Table::TYPE_INTEGER, null,
         array(
             'nullable' => false,
@@ -64,6 +72,12 @@ try
             'nullable'  => false,
         ),
         'Itunes album track count'
+    )->addIndex($installer->getIdxName('rafael_itunes/artist', array('id','collectionId', 'artistId')),
+        array('id','collectionId', 'artistId')
+    )->addIndex($installer->getIdxName('rafael_itunes/artist', array('id')),
+        array('id')
+    )->addIndex($installer->getIdxName('rafael_itunes/artist', array('collectionId')),
+        array('collectionId')
     )->addIndex($installer->getIdxName('rafael_itunes/artist', array('artistId')),
         array('artistId')
     )->addForeignKey($installer->getFkName('rafael_itunes/album', 'artistId', 'rafael_itunes/artist', 'artistId'),
@@ -73,8 +87,8 @@ try
         Varien_Db_Ddl_Table::ACTION_CASCADE, Varien_Db_Ddl_Table::ACTION_CASCADE
     );
 
-    if (!$installer->getConnection()->isTableExists($itunesTracks->getName())) {
-        $installer->getConnection()->createTable($itunesTracks);
+    if (!$installer->getConnection()->isTableExists($itunesAlbum->getName())) {
+        $installer->getConnection()->createTable($itunesAlbum);
     }
 
 } catch (Exception $exception) {

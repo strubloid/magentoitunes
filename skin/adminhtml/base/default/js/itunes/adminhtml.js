@@ -8,7 +8,7 @@
         init: function(){
 
             // this will load the bootgrid
-            this.loadBootgrid();
+            // this.loadBootgrid();
 
             // building the form
             this.buildMagentoForm();
@@ -69,7 +69,7 @@
 
                 $j.ajax({
                     type: "POST",
-                    url: '/admin/itunes/searchArtist',
+                    url: '/admin/itunes/search',
                     data:  postData,
                     dataType :'json',
                     success: (data, textStatus, jqXHR) => {
