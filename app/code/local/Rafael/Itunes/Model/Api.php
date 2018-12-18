@@ -1,21 +1,30 @@
 <?php
-
+/**
+ * Abstract class to create the idea of connect with API's.
+ *
+ * Class Rafael_Itunes_Model_Api
+ */
 abstract class Rafael_Itunes_Model_Api extends Mage_Core_Model_Abstract
 {
     public $searchType = 'search';
 
     public abstract function getAPiUrl();
-
     public abstract function itunesParams($request, $extraParams = null);
+    public abstract function search($request);
+    public abstract function searchParam();
+    public abstract function requestSearchParam($request);
 
-    public function requestSearchParam($request)
-    {
-        return $request->getParam('itunes-search');
-    }
-
+    /**
+     * Method that will build search params.
+     *
+     * @param $request
+     * @param null $extraParams
+     * @return string
+     * @throws Mage_Core_Exception
+     */
     public function buildSearchParams($request, $extraParams = null)
     {
-        if(!$request->has('itunes-search') || empty($request->getParam('itunes-search'))){
+        if(!$request->has($this->searchParam()) || empty($request->getParam($this->searchParam()))){
             throw Mage::exception('Rafael_Itunes_Exception_MissingSearchParam');
         }
 
@@ -25,8 +34,13 @@ abstract class Rafael_Itunes_Model_Api extends Mage_Core_Model_Abstract
         return "{$this->searchType}?{$params}";
     }
 
-    public abstract function search($request);
-
+    /**
+     * Method that will be possible filter the result.
+     *
+     * @param $output
+     * @param $request
+     * @return mixed
+     */
     public function filterResult($output, $request)
     {
         return $output;

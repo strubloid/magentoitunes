@@ -1,15 +1,41 @@
 <?php
 /**
- * Api class for Itunes service.
+ * Abstract class for the API collection from Itunes.
  *
- * User: strubloid
- */ 
-class Rafael_Itunes_Model_Api_Itunes extends Rafael_Itunes_Model_Api
+ * Class Rafael_Itunes_Model_Api_Itunes
+ */
+abstract class Rafael_Itunes_Model_Api_Itunes extends Rafael_Itunes_Model_Api
 {
-
+    /**
+     * Method that will return the Itunes API URL.
+     *
+     * @return string
+     */
     public function getAPiUrl()
     {
         return 'https://itunes.apple.com';
+    }
+
+    /**
+     * Method that will get the main search param from the itunes->tracks.
+     *
+     * @param $request
+     * @return mixed
+     */
+    public function searchParam()
+    {
+        return 'itunes-search';
+    }
+
+    /**
+     * Method that will get the main search param from the itunes->tracks.
+     *
+     * @param $request
+     * @return mixed
+     */
+    public function requestSearchParam($request)
+    {
+        return $request->getParam($this->searchParam());
     }
 
     /**

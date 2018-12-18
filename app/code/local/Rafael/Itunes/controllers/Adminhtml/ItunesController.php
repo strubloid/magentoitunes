@@ -44,14 +44,13 @@ class Rafael_Itunes_Adminhtml_ItunesController extends Mage_Adminhtml_Controller
     {
         try
             {
-            // loading the main collection
-            $mainCollection = Mage::getModel('rafael_itunes/tracks')
-                ->loadIndexTracks($this->getRequest());
+                $tracksObj =  Mage::getModel('rafael_itunes/tracks');
 
-            //TODO check when we have more than 20 results
+                // loading tracks
+                $tracksCollection = $tracksObj->loadTracks($this->getRequest());
 
-            // setting a response for a ajax call
-            $this->_ajax->successWithData($mainCollection->toArray());
+                // setting a response for a ajax call
+                $this->_ajax->successWithData($tracksCollection);
 
        } catch (Rafael_Itunes_Exception_NoResultsMagentoDatabase_Exception $exception) {
 

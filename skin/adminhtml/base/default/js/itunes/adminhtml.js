@@ -8,7 +8,7 @@
         init: function(){
 
             // this will load the bootgrid
-            // this.loadBootgrid();
+            this.loadBootgrid();
 
             // building the form
             this.buildMagentoForm();
@@ -94,14 +94,11 @@
 
             $(this.getTableId()).bootgrid({
                 highlightRows: true,
-                navigation: 3,
+                navigation: 2,
                 characters: 3,
                 ajax: true,
                 post:  this.getMainData(),
                 multiSelect: false,
-                // css: {
-                //   align: 'center'
-                // },
                 ajaxSettings: {
                     method: "POST",
                     cache: false,
@@ -115,23 +112,10 @@
                 formatters: {
                     images: function (column, row)
                     {
-                        return `<img src="${row.itunes_image_60}" />`;
+                        return `<img src="${row.artworkUrl100}" />`;
                     }
                 }
 
-            })
-            .on("loaded.rs.jquery.bootgrid", (e) =>{
-
-                // check if the row count is lower than 10, so we cant have the pagination.
-                var count = $j(this.getTableId()).bootgrid("getTotalRowCount");
-
-                if(count <= 10) {
-                    $(`${this.getTableId()}-footer`).hide();
-                } else {
-
-                    // TODO: test if this works as well
-                    $(`${this.getTableId()}-footer`).show();
-                }
             });
         },
         getMainData : function(data = null){
@@ -140,34 +124,6 @@
                 isAjax: 'true',
                 form_key:  window.FORM_KEY
             };
-        },
-        getTableTbodySelector: function(){
-          return `#${this.tableId} tbody`;
-        },
-        updateTableValues : function(data){
-
-            if(data){
-
-                var items = data.items;
-
-                // cleaning the table
-                $j(this.getTableTbodySelector()).html('');
-
-                for(var index =0; index < data.totalRecords; index++){
-
-                    const tr = `
-                        <tr>
-                            <td>${items[index]['itunes_artistname']}</td>
-                            <td>${items[index]['itunes_albumname']}</td>
-                            <td>${items[index]['itunes_trackprice']}</td>
-                            <td>${items[index]['itunes_image']}</td>                            
-                        </tr>
-                    `;
-
-                    $j(this.getTableTbodySelector()).append(tr);
-                }
-            }
-
         },
         canSearch : function(){
 

@@ -48,6 +48,4 @@ class Rafael_Itunes_Model_Api_Itunes_Album extends Rafael_Itunes_Model_Api_Itune
         return $output;
     }
 
-
-
 }

@@ -23,7 +23,6 @@ class Rafael_Itunes_Model_Api_Itunes_Track extends Rafael_Itunes_Model_Api_Itune
         );
     }
 
-
     /**
      * Making sure that the artist will be the same as requested from the search box.
      *
