@@ -48,8 +48,12 @@ class Rafael_Itunes_Model_Track extends Mage_Core_Model_Abstract
             // searching for the id into magento system
             $trackObject = $this->load($data['trackId'], 'trackId');
 
+            // loading ID
+            $id = $trackObject->getId();
+
             // checking if it will update or create a new record on it
-            if($id = $trackObject->getId()){
+            if(!empty($id))
+            {
                 $this->load($id)->addData($data)->setId($id)->save();
                 return 'Updated';
             } else {

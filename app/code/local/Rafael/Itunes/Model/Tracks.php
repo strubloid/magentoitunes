@@ -9,8 +9,7 @@ class Rafael_Itunes_Model_Tracks extends Mage_Core_Model_Abstract
      * Method that will load the first 20 items from tracks collection.
      *
      * @param $request
-     * @return object|Rafael_Itunes_Model_Resource_Tracks_Collection
-     * @throws Mage_Core_Exception
+     * @return mixed
      */
     public function loadTracks($request)
     {
@@ -34,7 +33,7 @@ class Rafael_Itunes_Model_Tracks extends Mage_Core_Model_Abstract
                 array('album' => $coreResource->getTableName('rafael_itunes/album')),
                 'artist.artistId = album.artistId',
                 new Zend_Db_Expr('album.collectionName, album.artworkUrl100')
-            )->join(
+            )->joinLeft(
                 array('track' => $coreResource->getTableName('rafael_itunes/track')),
                 'album.collectionId = track.collectionId',
                 new Zend_Db_Expr('track.trackName, track.trackNumber, track.trackPrice')

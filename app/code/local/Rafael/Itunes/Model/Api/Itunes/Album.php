@@ -21,6 +21,7 @@ class Rafael_Itunes_Model_Api_Itunes_Album extends Rafael_Itunes_Model_Api_Itune
         return array(
             'term' => $request->getParam('itunes-search'),
             'entity' => 'album',
+            'limit' => 10000,
         );
     }
 

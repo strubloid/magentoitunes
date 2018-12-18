@@ -1,6 +1,4 @@
-
-
-
+Example Band: Hazamat
 
 https://itunes.apple.com/search?term=hazamat&entity=album
 
@@ -16,8 +14,6 @@ Itunes_Album
 "collectionPrice": 7.99,
 "trackCount": 12,
 "artistId":1051543048
-
-
             
 https://itunes.apple.com/lookup?id=1051543048&entity=song
 

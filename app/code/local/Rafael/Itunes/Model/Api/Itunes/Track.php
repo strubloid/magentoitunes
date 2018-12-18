@@ -20,6 +20,7 @@ class Rafael_Itunes_Model_Api_Itunes_Track extends Rafael_Itunes_Model_Api_Itune
         return array(
             'id' => $extraParams,
             'entity' => 'song',
+            'limit' => 10000
         );
     }
 
@@ -38,7 +39,9 @@ class Rafael_Itunes_Model_Api_Itunes_Track extends Rafael_Itunes_Model_Api_Itune
 
         foreach ($results as $index => $result)
         {
-            if(!array_key_exists('trackId', $result)){
+
+            if(!array_key_exists('trackId', $result))
+            {
                 unset($output['results'][$index]);
                 $output['resultCount']--;
             }

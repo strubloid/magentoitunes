@@ -74,15 +74,18 @@
                     dataType :'json',
                     success: (data, textStatus, jqXHR) => {
 
-                        if(data.success){
-                            $j(this.getTableId()).bootgrid('reload');
+                        if(data) {
+                            if(data.success){
+                                $j(this.getTableId()).bootgrid('reload');
+                            }
+                            this.showMagentoMessage(data.msg, 4000);
                         }
-                        this.showMagentoMessage(data.msg, 4000);
                     },
                     error: (jqXHR, textStatus, errorThrown) => {
 
-                        data = jqXHR.responseJSON;
-                        this.showMagentoMessage(data.msg, 4000);
+                        if(data = jqXHR.responseJSON){
+                            this.showMagentoMessage(data.msg, 4000);
+                        }
                     }
                 });
             } else {
@@ -104,8 +107,10 @@
                     cache: false,
                     dataType :'json',
                     complete: (jqXHR, textStatus) => {
-                        data = jqXHR.responseJSON;
-                        this.showMagentoMessage(data.msg, 4000);
+
+                        if(data = jqXHR.responseJSON) {
+                            this.showMagentoMessage(data.msg, 4000);
+                        }
                     }
                 },
                 url: '/admin/itunes/loadTracks',
