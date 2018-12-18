@@ -67,6 +67,24 @@ class Rafael_Itunes_Adminhtml_ItunesController extends Mage_Adminhtml_Controller
         }
     }
 
+    public function search()
+    {
+
+        // fist i must check if exist the artist inside of my artist table
+
+            // exists
+                // 1 - load all magento album object
+                    // each object must search for tracks of that album
+                // 2 - you must persist the track data on track table
+
+            // not existent
+
+                // 1 - search on itunes API to grab albuns of that artist
+                // 2 - you must filter to be exactly the artist that you asked
+                // 3 - you must save the album data inside of album table
+        
+
+    }
 
     /**
      * Action that will search in the Itunes API and update of the data
@@ -78,7 +96,7 @@ class Rafael_Itunes_Adminhtml_ItunesController extends Mage_Adminhtml_Controller
         try
         {
             // loading the api object
-            $apiItunes = Mage::getModel('rafael_itunes/api_itunes');
+            $apiItunes = Mage::getModel('rafael_itunes/api_itunes_artist');
 
             // creating the search params for the API request
             $searchParams = $apiItunes->buildSearchParams($this->getRequest());

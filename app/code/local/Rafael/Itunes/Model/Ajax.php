@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Class responsible to return ajax responses for Itunes backend module.
+ *
+ * Class Rafael_Itunes_Model_Ajax
+ */
 class Rafael_Itunes_Model_Ajax extends Varien_Object
 {
 
@@ -16,7 +21,6 @@ class Rafael_Itunes_Model_Ajax extends Varien_Object
     {
         $this->response = $response;
     }
-
 
     /**
      * Method that will encode to JSON the data.

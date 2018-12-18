@@ -94,12 +94,14 @@
 
             $(this.getTableId()).bootgrid({
                 highlightRows: true,
-                // navigation: 1,
                 navigation: 3,
                 characters: 3,
                 ajax: true,
                 post:  this.getMainData(),
                 multiSelect: false,
+                // css: {
+                //   align: 'center'
+                // },
                 ajaxSettings: {
                     method: "POST",
                     cache: false,
@@ -110,6 +112,12 @@
                     }
                 },
                 url: '/admin/itunes/loadTracks',
+                formatters: {
+                    images: function (column, row)
+                    {
+                        return `<img src="${row.itunes_image_60}" />`;
+                    }
+                }
 
             })
             .on("loaded.rs.jquery.bootgrid", (e) =>{

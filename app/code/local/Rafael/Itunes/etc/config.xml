@@ -14,6 +14,15 @@
             <rafael_itunes_resource>
                 <class>Rafael_Itunes_Model_Resource</class>
                 <entities>
+                    <artist>
+                        <table>itunes_artist</table>
+                    </artist>
+                    <album>
+                        <table>itunes_album</table>
+                    </album>
+                    <track>
+                        <table>itunes_track</table>
+                    </track>
                     <tracks>
                         <table>itunes_tracks</table>
                     </tracks>

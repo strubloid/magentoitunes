@@ -12,8 +12,9 @@
 }
 
 .body-centered{
-    width: 1000px;
-    margin: 0px auto;
+    /*width: 1000px;*/
+    width: 90%;
+    margin: 10px auto;
 }
 
 .field-centered{
@@ -25,7 +26,8 @@
 
 #magento-itunes-tracks .field
 {
-    width: 900px;
+    /*width: 900px;*/
+    width: 90%;;
 }
 
 #magento-itunes-tracks .field input[type="text"]
@@ -71,4 +73,12 @@
     font-family: FontAwesome;
     position: relative;
     left: -8px;
+}
+
+#magento-itunes-grid tbody tr td {
+    vertical-align: middle;
+}
+
+#magento-itunes-grid .centered {
+    text-align: center;
 }

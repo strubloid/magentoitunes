@@ -20,10 +20,8 @@ class Rafael_Itunes_Model_Tracks extends Mage_Core_Model_Abstract
      * @return object|Rafael_Itunes_Model_Resource_Tracks_Collection
      * @throws Mage_Core_Exception
      */
-    public function loadIndexTracks($request, $quantity = 20, $page =1)
+    public function loadIndexTracks($request, $quantity = 10, $page =1)
     {
-
-
         // loading the collection
         $collection = $this->getCollection();
 
@@ -34,8 +32,6 @@ class Rafael_Itunes_Model_Tracks extends Mage_Core_Model_Abstract
 
         // loading the collection
         $collection->setPageSize($quantity)->setCurPage($page);
-
-
 
         // Checking if the collection it's empty
         if($collection->count() <= 0){
@@ -54,12 +50,12 @@ class Rafael_Itunes_Model_Tracks extends Mage_Core_Model_Abstract
     private function _buildData($data)
     {
         return array(
-            'itunes_trackId' => $data['trackId'],
+            'itunes_trackId' => $data['collectionId'],
             'itunes_artistname' => $data['artistName'],
+            'itunes_currency' => $data['currency'],
             'itunes_albumname' => $data['collectionName'],
             'itunes_trackname' => $data['trackName'],
             'itunes_trackprice' => $data['trackPrice'],
-            'itunes_image_30' => $data['artworkUrl30'],
             'itunes_image_60' => $data['artworkUrl60'],
             'itunes_image_100' => $data['artworkUrl100'],
         );
@@ -91,6 +87,23 @@ class Rafael_Itunes_Model_Tracks extends Mage_Core_Model_Abstract
             Mage::log($exception->getMessage(), null. 'track-itunes-logs.log', true);
 
         }
+    }
+
+    /**
+     * Method that it is being used to format the itunes_trackprice.
+     *
+     * @param array $arrAttributes
+     * @return array
+     */
+    public function toArray(array $arrAttributes = array())
+    {
+        // loading the father to array
+        $array = parent::toArray($arrAttributes);
+
+        // formatting the track price
+        $array['itunes_trackprice'] = Mage::helper('core')->currency($array['itunes_trackprice'], true, false);
+
+        return $array;
     }
 
 }
