@@ -1,0 +1,41 @@
+<?php
+
+// loading the main phrase of it
+$mainPhrase = $this->getMainPhrase();
+
+// loading the admin username
+$adminUsername = $this->getAdminUsername();
+
+?>
+
+<?php echo $this->getChildHtml('global_messages'); ?>
+
+<div id="magento-itunes" class="body-centered">
+    <div class="form">
+        <h2>Welcome <?php echo $adminUsername; ?>, this is Itunes Track module 1.0</h2>
+        <form id="magento-itunes-tracks" method="post">
+            <div class="field field-centered min-height">
+                <input type="hidden" id="mainValue" value="<?php echo $mainPhrase; ?>">
+                <button type="submit" class="icon fa input-group-addon fa-search"">&nbsp</button>
+                <input type="text" id="itunes-search" name="itunes-search" placeholder="<?php echo $mainPhrase; ?>" class="input-text itunes-search">
+            </div>
+        </form>
+    </div>
+    <div class="table">
+        <table id="magento-itunes-grid" class="table table-condensed table-hover table-striped">
+            <thead>
+            <tr>
+                <th data-column-id="trackName" data-width="31%">Track</th>
+                <th data-column-id="collectionName" data-width="28%" data-order="asc" >Album</th>
+                <th data-column-id="artistName" data-width="14%">Artist</th>
+                <th data-column-id="artworkUrl100"  data-width="10%" data-formatter="images" data-align="center" data-header-align="center">Image</th>
+                <th data-column-id="trackNumber"  data-width="5%"  data-align="center" data-header-align="center">Nº</th>
+                <th data-column-id="trackPrice" data-width="12%" data-align="center" data-header-align="center" >Track Price</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Rafael_Itunes>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Rafael_Itunes>
+    </modules>
+</config>

@@ -1,0 +1,84 @@
+#magento-itunes .form
+{
+    background-color: #84a0c4;
+    padding-bottom: 20px;
+}
+
+#magento-itunes h2
+{
+    text-align: center;
+    color: white;
+    padding: 20px 0px;
+}
+
+.body-centered{
+    /*width: 1000px;*/
+    width: 90%;
+    margin: 10px auto;
+}
+
+.field-centered{
+    margin: 0px auto;
+}
+.min-height{
+    min-height: 70px;
+}
+
+#magento-itunes-tracks .field
+{
+    /*width: 900px;*/
+    width: 90%;;
+}
+
+#magento-itunes-tracks .field input[type="text"]
+{
+    width: 90%;
+    height: 30px;
+    border: none;
+    line-height: 1px;
+    vertical-align: middle;
+    padding: 0px 10px;
+}
+
+#magento-itunes-tracks .field button[type="submit"]
+{
+    width: 40px;
+    height: 32px;
+    border: none;
+    background-color: #144f817a;
+    background-image: none;
+    font-size: 18px;
+    line-height: 1px;
+    vertical-align: middle;
+    position: relative;
+    right: -4px;
+    color: white;
+
+}
+
+.validation-advice, .magento-errors {
+    color: #991616f7 !important;
+    position: relative;
+    left: 50px;
+    font-size: 16px;
+    display: inline-block;
+    width: 90%;
+    margin: 8px 0px 0px 0px;
+    height: 20px;
+    background: none;
+}
+
+.validation-advice:before, .magento-errors:before {
+    content: "\f062";
+    font-family: FontAwesome;
+    position: relative;
+    left: -8px;
+}
+
+#magento-itunes-grid tbody tr td {
+    vertical-align: middle;
+}
+
+#magento-itunes-grid .centered {
+    text-align: center;
+}

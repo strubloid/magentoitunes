@@ -1,0 +1,43 @@
+<config>
+    <menu>
+        <itunes translate="title" module="rafael_itunes">
+            <title>Itunes</title>
+            <sort_order>100</sort_order>
+            <children>
+                <tracks>
+                    <title>Tracks</title>
+                    <sort_order>1</sort_order>
+                    <action>adminhtml/itunes/index</action>
+                </tracks>
+            </children>
+        </itunes>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <itunes translate="title" module="rafael_itunes">
+                        <title>Top Level Itunes</title>
+                        <sort_order>1</sort_order>
+                        <tracks>
+                            <example>
+                                <title>Menu tracks</title>
+                            </example>
+                        </tracks>
+                    </itunes>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <rafael>
+                                        <title>Rafael Modules</title>
+                                    </rafael>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
